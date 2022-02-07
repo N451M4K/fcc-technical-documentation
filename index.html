@@ -1,35 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation Java</title>
 </head>
+
 <body>
     <nav>
         <header>Java Documentation</header>
-            <ul>
-                <li>Introduction</li>
-                <li>Java</li>
-                <li>frameworks</li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
+        <ul>
+            <li>Introduction</li>
+            <li>Grammar Notations</li>
+            <li>The Kinds of Types and Values</li>
+            <li>Objects</li>
+            <li>Access Control</li>
+            <li>Packages and Modules</li>
+            <li>Package Declarations</li>
+            <li>Classes</li>
+            <li>Method Declarations</li>
+            <li>Constructor Declarations</li>
+        </ul>
     </nav>
-    <main>
+    <main id="main">
         <section>
-            <header><h2>Introduction</h2></header>
-            <article>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, impedit? Itaque error quam dolores, pariatur voluptatibus quo totam deserunt magnam?</article>
+            <header>
+                <h2>Introduction</h2>
+            </header>
+            <article>
+                <p>THE Java® programming language is a general-purpose, concurrent, classbased, object-oriented
+                    language. It is designed to be simple enough that many
+                    programmers can achieve fluency in the language. The Java programming language
+                    is related to C and C++ but is organized rather differently, with a number of aspects
+                    of C and C++ omitted and a few ideas from other languages included. It is intended
+                    to be a production language, not a research language, and so, as C. A. R. Hoare
+                    suggested in his classic paper on language design, the design has avoided including
+                    new and untested features</p>
+                <p>The Java programming language is strongly and statically typed. This specification
+                    clearly distinguishes between the compile-time errors that can and must be detected
+                    at compile time, and those that occur at run time. Compile time normally consists
+                    of translating programs into a machine-independent byte code representation.
+                    Run-time activities include loading and linking of the classes needed to execute
+                    a program, optional machine code generation and dynamic optimization of the
+                    program, and actual program execution.</p>
+                <p>The Java programming language is a relatively high-level language, in that details
+                    of the machine representation are not available through the language. It includes
+                    automatic storage management, typically using a garbage collector, to avoid
+                    the safety problems of explicit deallocation (as in C's free or C++'s delete).
+                    High-performance garbage-collected implementations can have bounded pauses to
+                    support systems programming and real-time applications. The language does not
+                    include any unsafe constructs, such as array accesses without index checking, since
+                    such unsafe constructs would cause a program to behave in an unspecified way.</p>
+                <p>
+                <h3>Example Program:</h3>
+                <code>
+                        public class HelloWorldApp {
+                        public static void main(String[] args) {
+                            System.out.println("Hello World!"); // Prints the string to the console.
+                        }
+                    }
+                </code></p>
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2>Grammar Notations</h2>
+            </header>
+            <article>
+                <p>Terminal symbols are shown in fixed width font in the productions of the lexical
+                    and syntactic grammars, and throughout this specification whenever the text is
+                    directly referring to such a terminal symbol. These are to appear in a program
+                    exactly as written.</p>
+                <p>Nonterminal symbols are shown in italic type. The definition of a nonterminal is
+                    introduced by the name of the nonterminal being defined, followed by a colon. One
+                    or more alternative definitions for the nonterminal then follow on succeeding lines.</p>
+                <p><code>IfThenStatement:
+                    if ( Expression ) Statement</code></p>
+                <p>BasicForStatement:<code>
+                    for ( ; ; ) Statement
+                    for ( ; ; ForUpdate ) Statement
+                    for ( ; Expression ; ) Statement
+                    for ( ; Expression ; ForUpdate ) Statement
+                    for ( ForInit ; ; ) Statement
+                    for ( ForInit ; ; ForUpdate ) Statement
+                    for ( ForInit ; Expression ; ) Statement
+                    for ( ForInit ; Expression ; ForUpdate ) Statement
+                </code></p>
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2>The Kinds of Types and Values</h2>
+            </header>
+            <article>
+                <p>There are two kinds of types in the Java programming language: primitive types
+                    (§4.2) and reference types (§4.3). There are, correspondingly, two kinds of data
+                    values that can be stored in variables, passed as arguments, returned by methods,
+                    and operated on: primitive values (§4.2) and reference values (§4.3)</p>
+                <p><h3>Primitive Types and Values</h3>
+                    A primitive type is predefined by the Java programming language and named by
+                    its reserved keyword (§3.9):
+                <code>
+                    PrimitiveType:
+                    {Annotation} NumericType
+                    {Annotation} boolean
+                    NumericType:
+                    IntegralType
+                    FloatingPointType
+                    IntegralType:
+                    (one of)
+                    byte short int long char
+                    FloatingPointType:
+                    (one of)
+                    float double
+                </code>
+                </p>
+                <p>Primitive values do not share state with other primitive values.
+                    The numeric types are the integral types and the floating-point types.
+                    The integral types are byte, short, int, and long, whose values are 8-bit, 16-bit,
+                    32-bit and 64-bit signed two's-complement integers, respectively, and char, whose
+                    values are 16-bit unsigned integers representing UTF-16 code units (§3.1).</p>
+                <p>
+                    The floating-point types are float, whose values exactly correspond to the 32-
+bit IEEE 754 binary32 floating-point numbers, and double, whose values exactly
+correspond to the 64-bit IEEE 754 binary64 floating-point numbers.
+The boolean type has exactly two values: true and false.
+                </p>
+                <p><h3>Reference Types and Values</h3>
+                    There are four kinds of reference types: class types (§8.1), interface types (§9.1),
+                    type variables (§4.4), and array types (§10.1).
+                </p>
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2>Objects</h2>
+            </header>
+            <article>
+                <p>An object is a class instance or an array.
+                    The reference values (often just references) are pointers to these objects, and a
+                    special null reference, which refers to no object.
+                    A class instance is explicitly created by a class instance creation expression (§15.9).
+                    An array is explicitly created by an array creation expression (§15.10.1).
+                    Other expressions may implicitly create a class instance (§12.5) or an array (§10.6).
+                    <h3>Object Creation Example</h3>
+                    <code>
+                        class Point {
+                            int x, y;
+                            Point() { System.out.println("default"); }
+                            Point(int x, int y) { this.x = x; this.y = y; }
+                            /* A Point instance is explicitly created at
+                            class initialization time: */
+                            static Point origin = new Point(0,0);
+                            /* A String can be implicitly created
+                            by a + operator: */
+                            public String toString() { return "(" + x + "," + y + ")"; }
+                           }
+                        class Test {
+                            public static void main(String[] args) {
+                            /* A Point is explicitly created
+                            using newInstance: */
+                            Point p = null;
+                            try {
+                            p = (Point)Class.forName("Point").newInstance();
+                            } catch (Exception e) {
+                            System.out.println(e);
+                            }
+                            /* An array is implicitly created
+                            by an array initializer: */
+                            Point a[] = { new Point(0,0), new Point(1,1) };
+                            /* Strings are implicitly created
+                            by + operators: */
+                            System.out.println("p: " + p);
+                            System.out.println("a: { " + a[0] + ", " + a[1] + " }");
+
+                            /* An array is explicitly created
+                            by an array creation expression: */
+                            String sa[] = new String[2];
+                            sa[0] = "he"; sa[1] = "llo";
+                            System.out.println(sa[0] + sa[1]);
+                            }
+                           }
+                    </code>
+                </p>
+                <p></p>
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2>Access Control</h2>
+            </header>
+            <article>
+                <p>The Java programming language provides mechanisms for access control, to
+                    prevent the users of a package or class from depending on unnecessary details of the
+                    implementation of that package or class. If access is permitted, then the accessed
+                    entity is said to be accessible.</p>
+                <p>Note that accessibility is a static property that can be determined at compile time;
+                    it depends only on types and declaration modifiers.</p>
+                <p>Qualified names are a means of access to members of packages, classes, interfaces,
+                    type parameters, and reference types. When the name of such a member is classified
+                    from its context (§6.5.1) as a qualified type name (denoting a member of a package,
+                    class, interface, or type parameter) or a qualified expression name (denoting a
+                    member of a reference type), access control is applied.</p>
+                <ul>
+                    <li>If a top level class or interface (§7.6) is declared public and is a member of a
+                        package that is exported by a module, then the class or interface may be accessed
+                        by any code in the same module, and by any code in another module to which
+                        the package is exported, provided that the compilation unit in which the class or
+                        interface is declared is visible to that other module (§7.3).</li>
+                    <li>If a top level class or interface is declared public and is a member of a package
+                        that is not exported by a module, then the class or interface may be accessed by
+                        any code in the same module.</li>
+                    <li>If a top level class or interface is declared with package access, then it may be
+                        accessed only from within the package in which it is declared.</li>
+                    <li>A top level class or interface declared without an access modifier implicitly has
+                        package access.</li>
+                    <li>A member (class, interface, field, or method) of a class, interface, type parameter,
+                        or reference type, or a constructor of a class, is accessible only if (i) the class,</li>
+                </ul>
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2>Packages and Modules</h2>
+            </header>
+            <article>
+                <p>
+                    PROGRAMS are organized as sets of packages. The members of a package (§7.1)
+                    are classes and interfaces, which are declared in compilation units of the package,
+                    and subpackages, which may contain compilation units and subpackages of their
+                    own.
+                </p>
+                <p>
+                    Each package has its own set of names for classes and interfaces, which helps to
+                    prevent name conflicts. The naming structure for packages is hierarchical.
+                </p>
+                <p>
+                    If a set of packages is sufficiently cohesive, then the packages may be grouped into
+                    a module. A module categorizes some or all of its packages as exported, which
+                    means their classes and interfaces may be accessed from code outside the module. If
+                    a package is not exported by a module, then only code inside the module may access
+                    its classes and interfaces. Furthermore, if code in a module wishes to access the
+                    packages exported by another module, then the first module must explicitly depend
+                    on the second module. Thus, a module controls how its packages use other modules
+                    (by specifying dependences) and controls how other modules use its packages (by
+                    specifying which of its packages are exported).
+                </p>
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2>Package Declarations</h2>
+            </header>
+            <article>
+                <p>A package declaration appears within an ordinary compilation unit to indicate the
+                    package to which the compilation unit belongs.
+                <code>
+                    {PackageModifier} package Identifier {. Identifier} ;
+                </code>
+            </p>
+                <p>An ordinary compilation unit that has no package declaration, but has at least one
+                    other kind of declaration, is part of an unnamed package.
+                </p>
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2>Classes</h2>
+            </header>
+            <article>
+                <p>
+                    A class declaration defines a new class and describes how it is implemented (§8.1). A top level class (§7.6) is a class declared directly in a compilation unit.
+                </p>
+                <p>
+                    A nested class is any class whose declaration occurs within the body of another
+                    class or interface declaration. A nested class may be a member class (§8.5, §9.5),
+                    a local class (§14.3), or an anonymous class (§15.9.5).
+                </p>
+                <p>
+                    Some kinds of nested class are an inner class (§8.1.3), which is a class that can
+                    refer to enclosing class instances, local variables, and type variables.
+                </p>
+                <p>
+                    An enum class (§8.9) is a class declared with abbreviated syntax that defines a
+                    small set of named class instances.
+                </p>
+                <p>
+                    A class declaration specifies a class:
+                    There are three kinds of class declarations: normal class declarations, enum
+                    declarations (§8.9), and record declarations (§8.10).
+                    <code>
+                        ClassDeclaration:
+                        NormalClassDeclaration
+                        EnumDeclaration
+                        RecordDeclaration
+
+                        NormalClassDeclaration:
+                        {ClassModifier} class TypeIdentifier [TypeParameters]
+                        [ClassExtends] [ClassImplements] [ClassPermits] ClassBody
+                    </code>
+                </p>
+            </article>
+        </section>
+
+        <section>
+            <header>
+                <h2>Method Declarations</h2>
+            </header>
+            <article>
+                <p> A method declares executable code that can be invoked, passing a fixed number
+                    of values as arguments.
+                    <code>
+                        MethodDeclaration:
+                        {MethodModifier} MethodHeader MethodBody
+                        MethodHeader:
+                        Result MethodDeclarator [Throws]
+                        TypeParameters {Annotation} Result MethodDeclarator [Throws]
+                        MethodDeclarator:
+                        Identifier ( [ReceiverParameter ,] [FormalParameterList] ) [Dims]
+                        ReceiverParameter:
+                        {Annotation} UnannType [Identifier .]
+                    </code>
+                </p>
+                <p>The receiver parameter is an optional syntactic device for an instance method or an
+                    inner class's constructor. For an instance method, the receiver parameter represents
+                    the object for which the method is invoked. For an inner class's constructor, the
+                    receiver parameter represents the immediately enclosing instance of the newly
+                    constructed object. In both cases, the receiver parameter exists solely to allow the
+                    type of the represented object to be denoted in source code, so that the type may
+                    be annotated (§9.7.4). The receiver parameter is not a formal parameter; more
+                    precisely, it is not a declaration of any kind of variable (§4.12.3), it is never bound
+                    to any value passed as an argument in a method invocation expression or class
+                    instance creation expression, and it has no effect whatsoever at run time.
+                </p>
+                <p>
+                    The type and name of a receiver parameter are constrained as follows:
+                    <ul>
+                        <li>In an instance method, the type of the receiver parameter must be the class or
+                            interface in which the method is declared, and the name of the receiver parameter
+                            must be this; otherwise, a compile-time error occurs.
+                        </li>
+                        <li>In an inner class's constructor, the type of the receiver parameter must be the
+                            class or interface which is the immediately enclosing type declaration of the inner
+                            class, and the name of the receiver parameter must be Identifier . this where
+                            Identifier is the simple name of the class or interface which is the immediately
+                            enclosing type declaration of the inner class; otherwise, a compile-time error
+                            occurs.
+                        </li>
+                    </ul>
+                </p>
+            </article>
         </section>
         <section>
-
+            <header><h2>Constructor Declarations</h2></header>
+            <article>
+                <p>A constructor is used in the creation of an object that is an instance of a class
+                    <code>
+                        ConstructorDeclaration:
+                        {ConstructorModifier} ConstructorDeclarator [Throws] ConstructorBody
+                        ConstructorDeclarator:
+                        [TypeParameters] SimpleTypeName
+                        ( [ReceiverParameter ,] [FormalParameterList] )
+                        SimpleTypeName:
+                        TypeIdentifier
+                    </code>
+                </p>
+                <p>The SimpleTypeName in the ConstructorDeclarator must be the simple name of
+                    the class that contains the constructor declaration, or a compile-time error occurs.
+                </p>
+                <p>
+                    In all other respects, a constructor declaration looks just like a method declaration
+                    that has no result
+                </p>
+                <p>
+                    Constructor declarations are not members. They are never inherited and therefore
+                    are not subject to hiding or overriding.
+                </p>
+                <p>
+                    Constructors are invoked by class instance creation expressions (§15.9), by
+                    the conversions and concatenations caused by the string concatenation operator
+                    + (§15.18.1), and by explicit constructor invocations from other constructors
+                    (§8.8.7). Access to constructors is governed by access modifiers (§6.6), so it is
+                    possible to prevent class instantiation by declaring an inaccessible constructor
+                    (§8.8.10).
+                </p>
+                <p>
+                    Constructors are never invoked by method invocation expressions.
+                </p>
+                <p>
+                    Example:
+                    <code>
+                        class Point {
+                            int x, y;
+                            Point(int x, int y) { this.x = x; this.y = y; }
+                           }
+                    </code>
+                </p>
+            </article>
         </section>
     </main>
 </body>
+
 </html>
