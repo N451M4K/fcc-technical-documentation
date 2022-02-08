@@ -67,3 +67,8 @@ section article {
     text-decoration: none;
     cursor: pointer;
 }
+#main-doc header {
+    text-align: left;
+    margin: 0px;
+    color: black;
+}
