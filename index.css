@@ -72,3 +72,17 @@ section article {
     margin: 0px;
     color: black;
 }
+@media only screen and (max-width: 815px){
+    #navbar ul {
+        border: 1px solid;
+        height: 207px;
+  }
+nav {
+    position: relative;
+    width: auto;
+}
+#main-doc{
+    margin-left: auto;
+}
+    }
+
