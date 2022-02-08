@@ -22,6 +22,10 @@
             <li>Classes</li>
             <li>Method Declarations</li>
             <li>Constructor Declarations</li>
+            <li>Interfaces</li>
+            <li>Interface Declarations</li>
+            <li>Interface Members</li>
+            <li>Interface Method Declarations</li>
         </ul>
     </nav>
     <main id="main">
@@ -405,6 +409,97 @@ The boolean type has exactly two values: true and false.
                            }
                     </code>
                 </p>
+            </article>
+        </section>
+        <section>
+            <header><h2>Interfaces</h2></header>
+            <article>
+                <p>
+                    AN interface declaration defines a new interface that can be implemented by one
+                    or more classes. Programs can use interfaces to provide a common supertype for
+                    otherwise unrelated classes, and to make it unnecessary for related classes to share
+                    a common abstract superclass.
+                </p>
+                <p>
+                    Interfaces have no instance variables, and typically declare one or more abstract
+                    methods; otherwise unrelated classes can implement an interface by providing
+                    implementations for its abstract methods. Interfaces may not be directly
+                    instantiated.
+                </p>
+                
+            </article>
+        </section>
+        <section>
+            <header><h2>Interface Declarations</h2></header>
+            <article>
+                <p>
+                    An interface declaration specifies an interface.
+                    There are two kinds of interface declarations: normal interface declarations and
+                    annotation interface declarations (§9.6).
+                    <code>
+                        InterfaceDeclaration:
+                        NormalInterfaceDeclaration
+                        AnnotationInterfaceDeclaration
+                        NormalInterfaceDeclaration:
+                        {InterfaceModifier} interface TypeIdentifier [TypeParameters]
+                        [InterfaceExtends] [InterfacePermits] InterfaceBody
+                    </code>
+                </p>
+            </article>
+        </section>
+        <section>
+            <header><h2>Interface Members</h2></header>
+            <article>
+                <p>
+                    The members of an interface are:
+                    <ul>
+                        <li>Members declared in the body of the interface declaration</li>
+                        <li>Members inherited from any direct superinterface types </li>
+                        <li>If an interface has no direct superinterface types, then the interface implicitly
+                            declares a public abstract member method m with signature s, return type
+                            r, and throws clause t corresponding to each public instance method m with
+                            signature s, return type r, and throws clause t declared in Object unless an abstract method with the same signature, same return type, and a
+                            compatible throws clause is explicitly declared by the interface.</li>
+                    </ul>
+                </p>
+                <p>
+                    It is a compile-time error if the interface explicitly declares such a method m in
+                    case where m is declared to be final in Object
+                </p>
+                <p>It is a compile-time error if the interface explicitly declares a method with a
+                    signature that is override-equivalent (§8.4.2) to a public method of Object, but
+                    which has a different return type, or an incompatible throws clause, or is not
+                    abstract.</p>
+            </article>
+        </section>
+        <section>
+            <header><h2>Interface Method Declarations</h2></header>
+            <article>
+                <p>A method in the body of an interface declaration may be declared public or
+                    private (§6.6). If no access modifier is given, the method is implicitly public. It
+                    is permitted, but discouraged as a matter of style, to redundantly specify the public
+                    modifier for a method declaration in an interface declaration.</p>
+                <p>
+                    A default method is an instance method declared in an interface with the default
+                    modifier. Its body is always represented by a block, which provides a default
+                    implementation for any class that implements the interface without overriding the
+                    method. Default methods are distinct from concrete methods (§8.4.3.1), which
+                    are declared in classes, and from private interface methods, which are neither
+                    inherited nor overridden.
+                </p>
+                <p>An interface can declare static methods, which are invoked without reference to
+                    a particular object. static interface methods are distinct from default methods,
+                    abstract interface methods, and non-static private interface methods, all of
+                    which are instance methods.
+                <code>
+                    InterfaceMethodDeclaration:
+                    {InterfaceMethodModifier} MethodHeader MethodBody
+                    InterfaceMethodModifier:
+                    (one of)
+                    Annotation public private
+                    abstract default static strictfp
+                </code>
+            </p>
             </article>
         </section>
     </main>
